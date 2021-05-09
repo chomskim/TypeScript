@@ -1,10 +1,10 @@
-const Card = require('./card')
-const FiveCards = require('./fivecards')
+import { Card } from './card'
+import { FiveCards } from './fivecards'
 
 const LINE_MAX = 13
 
-function printList(list) {
-  let res = []
+function printList(list: Card[]): void {
+  let res: Card[] = []
   list.forEach((card, i) => {
     res.push(card)
     i += 1
@@ -15,10 +15,10 @@ function printList(list) {
   })
 }
 
-function generate5CardList(gencount) {
+function generate5CardList(gencount: number): FiveCards[] {
   // Generate List<FiveCards>
-  let p5CardsList = []
-  let deckCard = []
+  let p5CardsList: FiveCards[] = []
+  let deckCard: Card[] = []
 
   // Make a Card Deck
   for (let s = Card.CLUB; s <= Card.SPADE; s++)
@@ -26,14 +26,14 @@ function generate5CardList(gencount) {
       deckCard.push(new Card(s, r))
     }
 
-  console.log(`deckCard=${deckCard}`)
+  //console.log(`deckCard=${deckCard}`)
   for (let i = 1; i <= gencount; i++) {
     suffle(deckCard)
     //console.log(`deckCard=${deckCard}`)
     // Make a Card Deck
     let indDeck = 0
 
-    let fc = new Array(5)
+    let fc = new Array<Card>(5)
     let ipos = 0
     while (indDeck < deckCard.length) {
       fc[ipos] = deckCard[indDeck]
@@ -47,7 +47,7 @@ function generate5CardList(gencount) {
   }
   return p5CardsList
 }
-function suffle(list) {
+function suffle(list: Card[]) {
   const SUFFLECOUNT = 100
 
   //println "List before Suffle"
@@ -60,11 +60,10 @@ function suffle(list) {
     oneOrzero = Math.random() <= 0.5 ? 0 : 1
     //console.log(`ind=${ind} rand=${oneOrzero} card=${list[ind]}`)
     if (oneOrzero === 0) {
-      // move to back
+      // swap with last element
       let mov = list[ind]
-      let last = list[list.length - 1]
+      list[ind] = list[list.length - 1]
       list[list.length - 1] = mov
-      list[ind] = last
     } else {
       ind++
       ind %= lsize
@@ -73,7 +72,7 @@ function suffle(list) {
   //println "List after Suffle"
   //printList(list);
 }
-function printFiveCardsList(fcList) {
+function printFiveCardsList(fcList: FiveCards[]) {
   fcList.forEach((fc, i) => {
     console.log(`${i + 1} ${fc}`)
   })
