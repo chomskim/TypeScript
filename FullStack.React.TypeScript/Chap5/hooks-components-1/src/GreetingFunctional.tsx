@@ -6,16 +6,16 @@ interface GreetingProps {
   greetingDispatcher: React.Dispatch<{ type: string; payload: string }>
 }
 
-export default function Greeting(props: GreetingProps) {
+export default function Greeting({ message, enteredName, greetingDispatcher }: GreetingProps) {
   const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    props.greetingDispatcher({ type: 'enteredName', payload: e.target.value })
-    props.greetingDispatcher({ type: 'message', payload: e.target.value })
+    greetingDispatcher({ type: 'enteredName', payload: e.target.value })
+    greetingDispatcher({ type: 'message', payload: e.target.value })
   }
 
   return (
     <div>
-      <input value={props.enteredName} onChange={onChangeName} />
-      <div>{props.message}</div>
+      <input value={enteredName} onChange={onChangeName} />
+      <div>{message}</div>
     </div>
   )
 }

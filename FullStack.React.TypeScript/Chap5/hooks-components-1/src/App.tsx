@@ -54,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        {/*<img src={logo} className="App-logo" alt="logo" />*/}
         <Greeting message={message} enteredName={enteredName} greetingDispatcher={dispatch} />
 
         <div style={{ marginTop: '10px' }}>
